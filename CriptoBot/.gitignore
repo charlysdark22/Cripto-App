@@ -2,6 +2,13 @@
 
 # dependencies
 node_modules/
+package-lock.json
+yarn.lock
+
+# Environment
+.env
+.env.local
+.env.*.local
 
 # Expo
 .expo/
@@ -17,6 +24,8 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+android/
+ios/
 
 # Metro
 .metro-health-check*
@@ -26,8 +35,41 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# macOS
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
+*.log
+
+# Build artifacts
+build/
+dist/
+out/
+.eas/
+
+# Testing
+coverage/
+.nyc_output/
+
+# AI/ML
+__pycache__/
+*.pyc
+venv/
+env/
+models/
+*.h5
+*.pkl
+
+# Backup
+*.bak
+*.backup
+*~
+
+# OS
+Thumbs.db
 *.pem
 
 # local env files
