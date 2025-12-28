@@ -8,6 +8,8 @@ import {
   Alert,
   ActivityIndicator,
   Switch,
+  TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, SIZES, SPACING } from '../constants';
@@ -16,7 +18,7 @@ import { botAPIService } from '../services/api';
 import { Button, SettingItem } from '../components';
 import { Settings } from '../types';
 
-export const SettingsScreen: React.FC = () => {
+export function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -94,8 +96,8 @@ export const SettingsScreen: React.FC = () => {
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Tipo de Broker</Text>
           <View style={styles.brokerSelector}>
-            {['interactive-brokers', 'binance', 'mt5'].map((broker) => (
-              <View
+            {['interactive-brokers', 'binance', 'mt5'].map((broker: string) => (
+              <TouchableOpacity
                 key={broker}
                 style={[
                   styles.brokerOption,
@@ -103,7 +105,7 @@ export const SettingsScreen: React.FC = () => {
                 ]}
               >
                 <Text style={styles.brokerOptionText}>{broker}</Text>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
@@ -115,7 +117,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="Ingrese su API Key"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.apiKey || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({ ...tempSettings, apiKey: text })
             }
             secureTextEntry
@@ -129,7 +131,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="Ingrese su API Secret"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.apiSecret || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({ ...tempSettings, apiSecret: text })
             }
             secureTextEntry
@@ -148,7 +150,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="2.0"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.riskPercentage?.toString() || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({
                 ...tempSettings,
                 riskPercentage: parseFloat(text) || 0,
@@ -168,7 +170,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="20.0"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.maxDrawdown?.toString() || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({
                 ...tempSettings,
                 maxDrawdown: parseFloat(text) || 0,
@@ -188,7 +190,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="1000.0"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.dailyLossLimit?.toString() || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({
                 ...tempSettings,
                 dailyLossLimit: parseFloat(text) || 0,
@@ -208,7 +210,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="0.1"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.positionSize?.toString() || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({
                 ...tempSettings,
                 positionSize: parseFloat(text) || 0,
@@ -227,7 +229,7 @@ export const SettingsScreen: React.FC = () => {
           <Text style={styles.switchLabel}>Notificaciones</Text>
           <Switch
             value={tempSettings.enableNotifications ?? false}
-            onValueChange={(value) =>
+            onValueChange={(value: boolean) =>
               setTempSettings({
                 ...tempSettings,
                 enableNotifications: value,
@@ -241,7 +243,7 @@ export const SettingsScreen: React.FC = () => {
           <Text style={styles.switchLabel}>Registrar Datos</Text>
           <Switch
             value={tempSettings.enableDataLogging ?? false}
-            onValueChange={(value) =>
+            onValueChange={(value: boolean) =>
               setTempSettings({
                 ...tempSettings,
                 enableDataLogging: value,
@@ -260,7 +262,7 @@ export const SettingsScreen: React.FC = () => {
             placeholder="5000"
             placeholderTextColor={colors.textTertiary}
             value={tempSettings.updateInterval?.toString() || ''}
-            onChangeText={(text) =>
+            onChangeText={(text: string) =>
               setTempSettings({
                 ...tempSettings,
                 updateInterval: parseFloat(text) || 0,

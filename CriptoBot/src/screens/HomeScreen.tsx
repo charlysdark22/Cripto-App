@@ -15,7 +15,7 @@ import { botAPIService } from '../services/api';
 import { Button, StatCard } from '../components';
 import moment from 'moment';
 
-export const HomeScreen: React.FC = () => {
+export function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

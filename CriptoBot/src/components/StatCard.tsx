@@ -16,14 +16,14 @@ interface StatCardProps {
   icon?: React.ReactNode;
 }
 
-export const StatCard: React.FC<StatCardProps> = ({
+export function StatCard({
   label,
   value,
   unit = '',
   variant = 'default',
   style,
   icon,
-}) => {
+}: StatCardProps) {
   const getTextColor = () => {
     switch (variant) {
       case 'positive':
@@ -52,7 +52,7 @@ export const StatCard: React.FC<StatCardProps> = ({
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -14,7 +14,7 @@ import { botAPIService } from '../services/api';
 import { TradeCard } from '../components';
 import { Trade } from '../types';
 
-export const TradesScreen: React.FC = () => {
+export function TradesScreen() {
   const insets = useSafeAreaInsets();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -74,9 +74,9 @@ export const TradesScreen: React.FC = () => {
 
   const stats = {
     totalTrades: trades.length,
-    closedTrades: trades.filter(t => t.status === 'closed').length,
-    openTrades: trades.filter(t => t.status === 'open').length,
-    winTrades: trades.filter(t => t.status === 'closed' && (t.profit || 0) > 0).length,
+    closedTrades: trades.filter((t: any) => t.status === 'closed').length,
+    openTrades: trades.filter((t: any) => t.status === 'open').length,
+    winTrades: trades.filter((t: any) => t.status === 'closed' && (t.profit || 0) > 0).length,
   };
 
   return (
@@ -116,7 +116,7 @@ export const TradesScreen: React.FC = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-        renderItem={({ item }) => (
+        renderItem={({ item }: { item: any }) => (
           <View style={styles.tradeContainer}>
             <TradeCard
               symbol={item.symbol}
@@ -132,7 +132,7 @@ export const TradesScreen: React.FC = () => {
             />
           </View>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item: any) => item.id}
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
             <Text style={styles.emptyText}>No hay operaciones aún</Text>

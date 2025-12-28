@@ -22,7 +22,7 @@ interface TradeCardProps {
   style?: ViewStyle;
 }
 
-export const TradeCard: React.FC<TradeCardProps> = ({
+export function TradeCard({
   symbol,
   type,
   entryPrice,
@@ -34,7 +34,7 @@ export const TradeCard: React.FC<TradeCardProps> = ({
   timestamp,
   reason,
   style,
-}) => {
+}: TradeCardProps) {
   const isProfit = profit !== undefined && profit > 0;
   const isClosed = status === 'closed';
 
@@ -116,7 +116,7 @@ export const TradeCard: React.FC<TradeCardProps> = ({
       </Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -18,7 +18,7 @@ interface ButtonProps {
   textStyle?: TextStyle;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export function Button({
   title,
   onPress,
   variant = 'primary',
@@ -26,7 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   style,
   textStyle,
-}) => {
+}: ButtonProps) {
   const getButtonStyle = () => {
     const baseStyle = {
       justifyContent: 'center',
@@ -72,7 +72,7 @@ export const Button: React.FC<ButtonProps> = ({
 
     return {
       fontSize,
-      fontWeight: '600',
+      fontWeight: '600' as any,
       color,
     };
   };
@@ -87,6 +87,6 @@ export const Button: React.FC<ButtonProps> = ({
       <Text style={[getTextStyle(), textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({});

@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { colors, SIZES } from '../constants';
 import { HomeScreen, TradesScreen, AnalyticsScreen, SettingsScreen } from '../screens';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import type { RouteProp } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,9 +52,9 @@ const SettingsStack = () => (
 
 const BottomTabNavigator = () => (
   <Tab.Navigator
-    screenOptions={({ route }) => ({
+    screenOptions={({ route }: { route: any }) => ({
       headerShown: false,
-      tabBarIcon: ({ focused, color, size }) => {
+      tabBarIcon: ({ focused, color, size }: { focused: boolean; color: string; size: number }) => {
         let iconName: 'home' | 'trending-up' | 'bar-chart' | 'settings' = 'home';
 
         if (route.name === 'Home') iconName = 'home';

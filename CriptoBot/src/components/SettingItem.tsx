@@ -17,14 +17,14 @@ interface SettingItemProps {
   rightContent?: React.ReactNode;
 }
 
-export const SettingItem: React.FC<SettingItemProps> = ({
+export function SettingItem({
   label,
   description,
   value,
   onPress,
   style,
   rightContent,
-}) => {
+}: SettingItemProps) {
   return (
     <TouchableOpacity
       style={[styles.container, style]}
@@ -42,7 +42,7 @@ export const SettingItem: React.FC<SettingItemProps> = ({
       </View>
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

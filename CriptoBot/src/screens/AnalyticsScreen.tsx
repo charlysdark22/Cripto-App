@@ -12,7 +12,7 @@ import { colors, SIZES, SPACING } from '../constants';
 import { botAPIService } from '../services/api';
 import { PerformanceMetrics } from '../types';
 
-export const AnalyticsScreen: React.FC = () => {
+export function AnalyticsScreen() {
   const insets = useSafeAreaInsets();
   const [metrics, setMetrics] = useState<PerformanceMetrics | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -167,7 +167,7 @@ interface MetricCardProps {
   variant?: 'default' | 'positive' | 'negative' | 'warning';
 }
 
-const MetricCard: React.FC<MetricCardProps> = ({ label, value, variant = 'default' }) => {
+function MetricCard({ label, value, variant = 'default' }: MetricCardProps) {
   const getColor = () => {
     switch (variant) {
       case 'positive':
@@ -187,19 +187,21 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, variant = 'defaul
       <Text style={[styles.metricValue, { color: getColor() }]}>{value}</Text>
     </View>
   );
-};
+}
 
 interface InterpretationItemProps {
   label: string;
   value: string;
 }
 
-const InterpretationItem: React.FC<InterpretationItemProps> = ({ label, value }) => (
-  <View style={styles.interpretationItem}>
-    <Text style={styles.interpretationLabel}>{label}</Text>
-    <Text style={styles.interpretationValue}>{value}</Text>
-  </View>
-);
+function InterpretationItem({ label, value }: InterpretationItemProps) {
+  return (
+    <View style={styles.interpretationItem}>
+      <Text style={styles.interpretationLabel}>{label}</Text>
+      <Text style={styles.interpretationValue}>{value}</Text>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
